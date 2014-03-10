@@ -52,9 +52,3 @@ Parse.Cloud.define("getForecast", function(request, response) {
     }
   });
 });
-
-
-
-Parse.Cloud.define("testParams", function(request, response) {
-    response.success(request.params.location);
-});

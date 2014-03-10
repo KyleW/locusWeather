@@ -1,0 +1,39 @@
+{
+  "name": "locusWeather",
+  "version": "0.0.0",
+  "description": "'",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/KyleW/locusWeather.git"
+  },
+  "author": "",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/KyleW/locusWeather/issues"
+  },
+  "homepage": "https://github.com/KyleW/locusWeather",
+  "dependencies": {
+    "karma-script-launcher": "~0.1.0",
+    "karma-chrome-launcher": "~0.1.2",
+    "karma-firefox-launcher": "~0.1.3",
+    "karma-html2js-preprocessor": "~0.1.0",
+    "karma-jasmine": "~0.1.5",
+    "karma-coffee-preprocessor": "~0.1.3",
+    "requirejs": "~2.1.11",
+    "karma-requirejs": "~0.2.1",
+    "karma-phantomjs-launcher": "~0.1.2",
+    "karma": "~0.10.9",
+    "karma-mocha": "~0.1.1",
+    "chai": "~1.9.0",
+    "karma-chai": "~0.1.0",
+    "sinon": "~1.9.0",
+    "karma-sinon": "~1.0.2"
+  }
+}

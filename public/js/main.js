@@ -1,8 +1,6 @@
 
 Parse.initialize("hKFK9auag4BFxC5DETdnFvV4kK4ycL9bzyD4UI7b", "9VsJudzLuZCJxf6cN1GnJ9et8hiePdp2fp9cZlvM");
 
-
-
 var userLocation;
 var weather;
 
