@@ -1,5 +1,5 @@
 
-var keys = require('cloud/myModule.js');
+var keys = require('cloud/keys.js');
 
 // Use Parse.Cloud.define to define as many cloud functions as you want.
 // For example:
@@ -9,6 +9,11 @@ Parse.Cloud.define("hello", function(request, response) {
 
 
 Parse.Cloud.define("findKeys", function(request, response) {
-  if()
-  response.success("Hello world!");
+  if(keys.wundergroundKey && keys.bingMapsKey){
+    response.success("Found the keys");
+  }
+  else {
+    response.success("Keys are missing");
+  }
+
 });
