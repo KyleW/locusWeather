@@ -1,0 +1,11 @@
+{
+    "applications": {
+        "KWeather": {
+            "applicationId": "hKFK9auag4BFxC5DETdnFvV4kK4ycL9bzyD4UI7b", 
+            "masterKey": "79a6aMLb9SmvARZCsd7HhY8rDA2BUiEhMe76Pk6C"
+        }, 
+        "_default": {
+            "link": "KWeather"
+        }
+    }
+}
