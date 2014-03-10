@@ -19,21 +19,21 @@ var getCurrentLoc = function(){
 
 
 $(document).ready(function(){
-
-  getCurrentLoc();
-
-  Parse.Cloud.run('findKeys', {}, {
-  success: function(result) {
-    console.log(result);
-  },
-  error: function(error) {
-  }
-});
-
   if (!("autofocus" in document.createElement("input"))) {
     $("#citySearch").focus();
   }
 
 });
 
+getCurrentLoc();
+
+searchForLoc = function(location){
+  Parse.Cloud.run('lookupCoordinates', {location:"2124 Mckinley Ave, Berkeley"}, {
+    success: function(result) {
+      console.log(result);
+    },
+    error: function(error) {
+    }
+  });
+};
 
