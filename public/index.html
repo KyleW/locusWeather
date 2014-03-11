@@ -1,25 +1,34 @@
-
-<html>
+<!DOCTYPE html>
+<html ng-app="weather">
   <head>
     <title>Kyle's Weather App</title>
     <link href="css/styles.css" rel="stylesheet">
   </head>
-  <body>
+  <body ng-controller="main">
+    <!-- {{ test }} -->
+    <!-- {{ userLocation }} -->
+    <!-- {{ forecast }} -->
+
     <form name="city">
-      <input id="citySearch" name="cityName" label="cityName" type="search" placeholder="Select a city" autofocus><br>
+      <input id="citySearch" ng-model="locQuery" name="cityName" label="cityName" type="search" placeholder="Select a city" autofocus><br>
       <input type="submit">
     </form>
-    <div class="forecast">
-      loading...
-    </div>
 
+    <div id="forecast">
+      <div class="forecastDay" ng-repeat="day in forecast">
+        <div class="date">{{day.date.pretty}}</div>
+        <div class="temp">High: {{day.high.fahrenheit}}  Low: {{day.low.fahrenheit}} </div>
+      </div>
+    </div>
+      
     <div class="attribution">
       <a href="http://www.wunderground.com/?apiref=f891597cf9a926dc">App powered by Weather Underground</a>
     </div>
 
     <!-- Libraries -->
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>-->
     <script type="text/javascript" src="https://www.parsecdn.com/js/parse-1.2.7.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular.min.js"></script>
 
     <!-- App Code -->
     <script src="js/main.js"></script>

@@ -4,10 +4,14 @@
   bottom: 0;
   padding: 20px;
 }
-.forecast {
+#forecast {
   position: flex;
   flex-direction: row;
 }
-.forecast div {
+#forecast div {
   flex: 1;
+}
+#forecast .forecastDay:position flex {
+  flex: 1;
+  flex-direction: column;
 }
