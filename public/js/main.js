@@ -1,4 +1,5 @@
 
+
 Parse.initialize("hKFK9auag4BFxC5DETdnFvV4kK4ycL9bzyD4UI7b", "9VsJudzLuZCJxf6cN1GnJ9et8hiePdp2fp9cZlvM");
 
 var userLocation;
@@ -6,12 +7,11 @@ var weather;
 
 var getCurrentLoc = function(){
   //TODO: switch to bing API for consistency??
-
   // Details on API at http://www.telize.com/
   $.getJSON("http://www.telize.com/geoip?callback=?",function(json) {
-    console.log(json); //debugging
-    userLocation=""+json.latitude+","+json.longitude;
-    console.log("userLocation= ",userLocation); //debugging
+    return json; //debugging
+    // userLocation=""+json.latitude+","+json.longitude;
+    // console.log("userLocation= ",userLocation); //debugging
   });
 };
 
@@ -25,7 +25,7 @@ $(document).ready(function(){
 
 getCurrentLoc();
 
-searchForLoc = function(location){
+var searchForLoc = function(location){
   Parse.Cloud.run('lookupCoordinates', {location:"2124 Mckinley Ave, Berkeley"}, {
     success: function(result) {
       console.log(result);
@@ -35,3 +35,14 @@ searchForLoc = function(location){
   });
 };
 
+
+var test = function (){
+  Parse.Cloud.run('lookupCoordinates', {location:"2124 Mckinley Ave, Berkeley"}, {
+    success: function(result) {
+      return result;
+    },
+    error: function(error) {
+    }
+  });
+
+}

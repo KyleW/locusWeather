@@ -1,9 +1,9 @@
 
 describe("Parse", function() {
-  beforeEach(function() {
-  });
-  afterEach(function() {
-  });
+  // beforeEach(function() {
+  // });
+  // afterEach(function() {
+  // });
  
 
   it('hello function should return Hello world!', function() {
@@ -21,5 +21,22 @@ describe("Parse", function() {
       }
     });
   });
+    
+});
+
+
+
+describe("Lookup IP on load", function() {
+  beforeEach(function() {
+    getCurrentLoc();
+  });
+  // afterEach(function() {
+  // });
+ 
+
+  it('should change userLocation to an array with a latitude and longitude', function() {
+    expect(userLocation).to.be.a('string');
+  });
+
     
 });
