@@ -1,5 +1,4 @@
 
-
 Parse.initialize("hKFK9auag4BFxC5DETdnFvV4kK4ycL9bzyD4UI7b", "9VsJudzLuZCJxf6cN1GnJ9et8hiePdp2fp9cZlvM");
 
 var userLocation;
@@ -16,6 +15,19 @@ var getCurrentLoc = function(){
 };
 
 
+var getForecast = function(location){
+  Parse.Cloud.run('getForecast', {location:"37.8,-122.4"}, {
+    success: function(result) {
+      console.log(result);
+    },
+    error: function(error) {
+    }
+  });
+};
+
+
+////////////////////////////////////////////
+
 $(document).ready(function(){
   if (!("autofocus" in document.createElement("input"))) {
     $("#citySearch").focus();
@@ -24,9 +36,13 @@ $(document).ready(function(){
 });
 
 getCurrentLoc();
+searchForLoc("2124 Mckinley Ave, Berkeley");
+getForecast();
 
+
+// DEBUGGING
 var searchForLoc = function(location){
-  Parse.Cloud.run('lookupCoordinates', {location:"2124 Mckinley Ave, Berkeley"}, {
+  Parse.Cloud.run('lookupCoordinates', {"location":location}, {
     success: function(result) {
       console.log(result);
     },
@@ -34,6 +50,7 @@ var searchForLoc = function(location){
     }
   });
 };
+
 
 
 var test = function (){
@@ -44,5 +61,4 @@ var test = function (){
     error: function(error) {
     }
   });
-
-}
+};
