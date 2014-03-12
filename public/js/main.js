@@ -49,9 +49,8 @@ app.controller('main',function($scope, $http) {
 
     $scope.forecast = result.forecast.simpleforecast.forecastday;
     $scope.calculatePercentSunny($scope.forecast);
-    $scope.updateTempChart($scope.forecast);
-    $scope.updateRainChart($scope.forecast);
-    // console.log("forecast ",$scope.forecast); //DEBUGGING
+
+    $scope.buildCharts($scope.forecast);
 
     $scope.$apply();
   };
@@ -79,19 +78,27 @@ app.controller('main',function($scope, $http) {
 
   //CHARTING
   // Docs at: http://www.chartjs.org/docs/
-  $scope.updateTempChart =function(forecast){
+
+  $scope.buildCharts = function(forecast){
     var labels=[];
     var highData=[];
     var lowData=[];
+    var rainData=[];
 
-    for(var i = 0; i <$scope.numDays; i++){
+    for(var i = 0; i < $scope.numDays; i++){
       labels.push(forecast[i].date.monthname+" "+forecast[i].date.day);
       highData.push(forecast[i].high.fahrenheit);
       lowData.push(forecast[i].low.fahrenheit);
+      rainData.push(forecast[i].qpf_allday.in);
     }
 
+    $scope.updateTempChart(labels, highData, lowData);
+    $scope.updateRainChart(labels,rainData);
+  };
+
+  $scope.updateTempChart =function(labels,highData, lowData){
     var data = {
-      labels:labels,
+      "labels":labels,
           datasets : [
           {
             fillColor : "rgba(181,125,178,0.5)",
@@ -114,16 +121,9 @@ app.controller('main',function($scope, $http) {
     var tempChart = new Chart(ctx).Line(data);
   };
 
-  $scope.updateRainChart =function(forecast){
-    var labels=[];
-    var rainData=[];
-    for(var i = 0; i <$scope.numDays; i++){
-      labels.push(forecast[i].date.monthname+" "+forecast[i].date.day);
-      rainData.push(forecast[i].qpf_allday.in);
-    }
-
+  $scope.updateRainChart =function(labels,rainData){
     var data = {
-      labels:labels,
+      "labels":labels,
           datasets : [
           {
             fillColor : "rgba(181,125,178,0.5)",
