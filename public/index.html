@@ -7,11 +7,20 @@
   <body ng-controller="main">
 
     <form name="city">
-      <input id="citySearch" ng-model="locQuery" name="cityName" label="cityName" type="search" placeholder="Select a city" autofocus><br>
-      <input type="submit">
+      <input type="text" placeholder="Select a city" ng-model="locQuery" autofocus><br>
+       <button ng-click="getForecastByLocation(locQuery)">Submit</button>
     </form>
+    
 
-    Weather for {{ location.city }}
+    <div ng-show="alternatives">
+      <h2>Possible Cities</h2>
+      <div ng-repeat="city in alternatives" ng-click="selectCity(city)">
+        <button>{{city.city}} {{city.state}} {{city.country}}</button>
+      </div>
+    </div>
+
+    <div>
+    <h2> Weather for {{ location.city }}</h2>
 
     <div id="forecast">
       <div class="forecastDay" ng-repeat="day in forecast">
@@ -19,7 +28,7 @@
         <div class="temp">High: {{day.high.fahrenheit}}  Low: {{day.low.fahrenheit}} </div>
       </div>
     </div>
-      
+
     <div class="attribution">
       <a href="http://www.wunderground.com/?apiref=f891597cf9a926dc">App powered by Weather Underground</a>
     </div>
