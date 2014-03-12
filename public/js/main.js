@@ -6,6 +6,8 @@ var app = angular.module('weather', []);
 
 app.controller('main',function($scope, $http) {
 
+
+
   // Methods for getting forecast
   $scope.getForecastByLocation = function(location){
     Parse.Cloud.run('getForecastByLocation', {'location':location}, {
@@ -22,6 +24,7 @@ app.controller('main',function($scope, $http) {
     });
   };
 
+
   $scope.getForecastByIP = function(clientIP){
     Parse.Cloud.run('getForecastByIP', {'clientIP':clientIP}, {
       success: function(result) {
@@ -32,22 +35,37 @@ app.controller('main',function($scope, $http) {
       });
   };
 
+
+
+
+  //Updating View
   $scope.updateForecast = function(result){
     $scope.location = result.location;
+    $scope.numDays = $scope.numDaysQ;
+
     $scope.forecast = result.forecast.simpleforecast.forecastday;
-    console.log($scope.forecast);
     $scope.calculatePercentSunny($scope.forecast);
+    $scope.updateTempChart($scope.forecast);
+    $scope.updateRainChart($scope.forecast);
+    console.log("forecast ",$scope.forecast); //DEBUGGING
+
     $scope.$apply();
   };
 
+
+
+
+
+
+
   $scope.calculatePercentSunny = function(forecast){
-    var sunnyDays = 0;
+    $scope.sunnyDays = 0;
     for (var i = 0 ; i < $scope.numDays ; i++) {
       if(forecast[i].skyicon === "sunny"){
-        sunnyDays++;
+        $scope.sunnyDays++;
       }
     }
-    $scope.percentSunny = (sunnyDays/$scope.numDays)*100;
+    // $scope.percentSunny = (sunnyDays/$scope.numDays)*100;
     $scope.$apply();
   };
 
@@ -58,9 +76,80 @@ app.controller('main',function($scope, $http) {
   };
 
 
+  //CHARTING
+  // Docs at: http://www.chartjs.org/docs/
+  $scope.updateTempChart =function(forecast){
+    var labels = _.map(forecast,function(day){
+      return day.date.monthname+" "+day.date.day;
+    });
 
+    var highData = _.map(forecast,function(day){
+      return day.high.fahrenheit;
+    });
+
+    var lowData =_.map(forecast,function(day){
+      return day.low.fahrenheit;
+    });
+
+    var data = {
+      labels:labels,
+          datasets : [
+          {
+            fillColor : "rgba(220,220,220,0.5)",
+            strokeColor : "rgba(220,220,220,1)",
+            pointColor : "rgba(220,220,220,1)",
+            pointStrokeColor : "#fff",
+            data : highData
+          },
+          {
+            fillColor : "rgba(151,187,205,0.5)",
+            strokeColor : "rgba(151,187,205,1)",
+            pointColor : "rgba(151,187,205,1)",
+            pointStrokeColor : "#fff",
+            data : lowData
+          }
+        ]
+    };
+
+    var ctx = document.getElementById("tempChart").getContext("2d");
+    var tempChart = new Chart(ctx).Line(data);
+  };
+
+  $scope.updateRainChart =function(forecast){
+    var labels = _.map(forecast,function(day,i){
+      if(i < $scope.numDays){
+        return day.date.monthname+" "+day.date.day;
+      }
+    });
+
+    var rainData = _.map(forecast,function(day){
+      return day.qpf_allday.in;
+    });
+
+    var data = {
+      labels:labels,
+          datasets : [
+          {
+            fillColor : "rgba(220,220,220,0.5)",
+            strokeColor : "rgba(220,220,220,1)",
+            pointColor : "rgba(220,220,220,1)",
+            pointStrokeColor : "#fff",
+            data : rainData
+          }
+        ]
+    };
+
+    var ctx = document.getElementById("rainChart").getContext("2d");
+    var rainChart = new Chart(ctx).Line(data);
+
+
+  };
+
+  
+
+  // Set Defaults
   //Sets Default numDays
-  $scope.numDays=10;
+  $scope.numDaysQ=10;
 
   //Default Behavior: Get the client IP and Display Default Forecast on load
   $http.jsonp('http://www.telize.com/jsonip?callback=JSON_CALLBACK')
