@@ -8,7 +8,8 @@
   <body ng-controller="main">
     <div id="topSection">
       <div class="leftCol">
-        <img class="logo" src="images/logo.png"/>KWeather
+        <img class="logo" src="images/logo.png"/>
+        <span id="appName">KWeather</span>
       </div>
       <div class="rightCol">
         <div class="cityForm">
@@ -22,24 +23,23 @@
         </div>
 
         <div class="alternatives" ng-show="alternatives">
-          <h2>Possible Cities</h2>
+          <h3>Did you mean . . . </h3>
           <div ng-repeat="city in alternatives" ng-click="selectCity(city)">
-            <button>{{city.city}} {{city.state}} {{city.country}}</button>
+            <button class="topcoat-button--large--cta">{{city.city}}, {{city.state}} {{city.country_name}}</button>
           </div>
         </div>
       </div>
     </div>
-     
+    <div class="curCity"><h2>{{numDays}} Day Forecast for {{ location }}</h2></div>
     <div id="bottomSection">
       <div id="forecast">
-        <div><h3>{{numDays}} Day Forecast for {{ location.city }}</h3></div>
         <div class="forecastDay" ng-repeat="day in forecast | limitTo: numDays">
           <div class="dayIcon"><img src="{{day.icon_url}}"/></div>
-          <div class="date">{{day.date.weekday}} {{day.date.monthname}} {{day.date.day}}</div>
           <div class="temp">
             High: {{day.high.fahrenheit}}<br>
-            Low: {{day.low.fahrenheit}}
+            Low:  {{day.low.fahrenheit}}
           </div>
+          <div class="date">{{day.date.weekday}} {{day.date.monthname}} {{day.date.day}}</div>
           <div class="clearfix"></div>
         </div>
       </div>
@@ -48,10 +48,12 @@
         <h3> Sunny Days: {{ ((sunnyDays/numDays)*100) | number:0 }}%</h3>
         <div>
           <h3>Temperature</h3>
-          <canvas id="tempChart" width="500" height="220"></canvas></div>
+          <canvas id="tempChart" width="600" height="200"></canvas>
+        </div>
         <div>
           <h3>Rainfall</h3>
-          <canvas id="rainChart" width="500" height="220"></canvas></div>
+          <canvas id="rainChart" width="600" height="200"></canvas>
+        </div>
       </div>
     </div>
 

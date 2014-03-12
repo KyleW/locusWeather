@@ -9,12 +9,21 @@ body
   flex-direction row
   border-bottom:4px solid black
   padding 20px
+  font-weight bold
 
   .leftCol
     flex 2
+    margin-top -10px
 
     .logo
-      vertical-align middle
+      vertical-align bottom
+      height 40px
+      width 40px
+
+    #appName
+      font-size 30px
+      font-weight bolder
+
 
   .rightCol
     flex 5
@@ -25,20 +34,31 @@ body
         vertical-align middle
       .topcoat-range
         vertical-align middle
+    .alternatives
+      button
+        width 40%
+        margin-top 5px
 
 
+.curCity
+  margin-left 48px;
+  margin-bottom 0
+  margin-top -10px
 
 #bottomSection
   display flex
   flex-direction row
-  padding 10px 40px
+  padding 0px 40px
+  margin-top -15px
 
   #forecast
-    flex 1
+    flex 3
     margin 5px
     padding 0 30px 0 10px
 
     .forecastDay
+      display flex
+      flex-direction row
       background #7A9AE5
       border 1px solid #7A9AE5
       -webkit-border-radius: 4px;
@@ -46,18 +66,30 @@ body
       border-radius: 4px;
       margin: 5px 0
       padding:4px
+      font-weight bold
 
-      .date
-        text-align right
 
       .dayIcon
-        display:inline-block
-        float:left
-        margin-right 10px
+        float left
+        display inline-block
 
+      .temp
+        flex 1
+        margin-top 4px
+        margin-left 10px
+        line-heigh 1.4rem
+
+
+      .date
+        flex 2
+        text-align right
+        margin-right 4px
 
   #charts
-    flex 1
+    flex 5
+    div
+      margin 0 auto 5px
+
 
 
 .attribution

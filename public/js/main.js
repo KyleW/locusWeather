@@ -40,14 +40,18 @@ app.controller('main',function($scope, $http) {
 
   //Updating View
   $scope.updateForecast = function(result){
-    $scope.location = result.location;
+    if (result.location.country==="US"){
+      $scope.location = result.location.city +", "+result.location.state;
+    } else {
+      $scope.location= result.location.city +", "+result.location.country_name;
+    }
     $scope.numDays = $scope.numDaysQ;
 
     $scope.forecast = result.forecast.simpleforecast.forecastday;
     $scope.calculatePercentSunny($scope.forecast);
     $scope.updateTempChart($scope.forecast);
     $scope.updateRainChart($scope.forecast);
-    console.log("forecast ",$scope.forecast); //DEBUGGING
+    // console.log("forecast ",$scope.forecast); //DEBUGGING
 
     $scope.$apply();
   };

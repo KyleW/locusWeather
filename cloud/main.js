@@ -35,8 +35,9 @@ Parse.Cloud.define("getForecastByIP", function(request, response) {
 
 
 Parse.Cloud.define("getForecastByLocation", function(request, response) {
+  var location= encodeURIComponent(request.params.location);
   Parse.Cloud.httpRequest({
-    url: 'http://api.wunderground.com/api/'+keys.wundergroundKey+'/geolookup/forecast10day/q/'+request.params.location+'.json',
+    url: 'http://api.wunderground.com/api/'+keys.wundergroundKey+'/geolookup/forecast10day/q/'+location+'.json',
     success: function(httpResponse) {
       response.success(httpResponse.data);
     },
