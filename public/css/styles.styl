@@ -1,21 +1,37 @@
 body
   font-family helvetica
 
+.clearfix
+  clear both
+
+#topSection
+  display flex
+  flex-direction row
+  border-bottom:4px solid black
+  padding 20px
+
+  .leftCol
+    flex 2
+
+  .rightCol
+    flex 5
+
+
+
+#bottomSection
+  display flex
+  flex-direction row
+  padding 10px 40px
+
+  #forecast
+    flex 1
+
+  #charts
+    flex 1
+
+
 .attribution
   position absolute
   right 0
   bottom 0
   padding 20px
-
-
-#forecast
-  position flex
-  flex-direction row
-
-  div
-    flex 1
-
-  .forecastDay:
-    position flex
-    flex 1
-    flex-direction column

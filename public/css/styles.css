@@ -1,20 +1,35 @@
 body {
   font-family: helvetica;
 }
+.clearfix {
+  clear: both;
+}
+#topSection {
+  display: flex;
+  flex-direction: row;
+  border-bottom: 4px solid #000;
+  padding: 20px;
+}
+#topSection .leftCol {
+  flex: 2;
+}
+#topSection .rightCol {
+  flex: 5;
+}
+#bottomSection {
+  display: flex;
+  flex-direction: row;
+  padding: 10px 40px;
+}
+#bottomSection #forecast {
+  flex: 1;
+}
+#bottomSection #charts {
+  flex: 1;
+}
 .attribution {
   position: absolute;
   right: 0;
   bottom: 0;
   padding: 20px;
-}
-#forecast {
-  position: flex;
-  flex-direction: row;
-}
-#forecast div {
-  flex: 1;
-}
-#forecast .forecastDay:position flex {
-  flex: 1;
-  flex-direction: column;
 }

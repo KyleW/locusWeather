@@ -5,34 +5,47 @@
     <link href="css/styles.css" rel="stylesheet">
   </head>
   <body ng-controller="main">
+    <div id="topSection">
+      <div class="leftCol">
+        LOGO WILL GO HERE
+      </div>
+      <div class="rightCol">
+        <div class="cityForm">
+          <form name="city">
+            City: <input type="text" placeholder="Select a city" ng-model="locQuery" autofocus>
+            Number of days (max 10): <input type="number" value="10" min="0" max="10" ng-model="numDaysQ">
+            <button ng-click="getForecastByLocation(locQuery)">Submit</button>
+          </form>
+        </div>
 
-    <canvas id="tempChart" width="400" height="400"></canvas>
-    <canvas id="rainChart" width="400" height="400"></canvas>
-    <form name="city">
-      City: <input type="text" placeholder="Select a city" ng-model="locQuery" autofocus><br>
-      Number of days (max 10): <input type="number" value="10" min="0" max="10" ng-model="numDaysQ"><br>
-       <button ng-click="getForecastByLocation(locQuery)">Submit</button>
-    </form>
-    
-
-    <div ng-show="alternatives">
-      <h2>Possible Cities</h2>
-      <div ng-repeat="city in alternatives" ng-click="selectCity(city)">
-        <button>{{city.city}} {{city.state}} {{city.country}}</button>
+        <div class="alternatives" ng-show="alternatives">
+          <h2>Possible Cities</h2>
+          <div ng-repeat="city in alternatives" ng-click="selectCity(city)">
+            <button>{{city.city}} {{city.state}} {{city.country}}</button>
+          </div>
+        </div>
       </div>
     </div>
+     
+    <div id="bottomSection">
+      <div id="forecast">
+        <div><h3>{{numDays}} Day Forecast for {{ location.city }}</h3></div>
+        <div class="forecastDay" ng-repeat="day in forecast | limitTo: numDays">
+          <div class="date">{{day.date.pretty}}</div>
+          <div class="temp">High: {{day.high.fahrenheit}}  Low: {{day.low.fahrenheit}} </div>
+        </div>
+      </div>
 
-    <div>
-    <h2> Weather for {{ location.city }}</h2>
-    <h2> Sunny Days: {{ ((sunnyDays/numDays)*100) | number:0 }}%</h2>
-    <div id="forecast">
-      <div class="forecastDay" ng-repeat="day in forecast | limitTo: numDays">
-        <div class="date">{{day.date.pretty}}</div>
-        <div class="temp">High: {{day.high.fahrenheit}}  Low: {{day.low.fahrenheit}} </div>
+      <div id="charts">
+        <h3> Sunny Days: {{ ((sunnyDays/numDays)*100) | number:0 }}%</h3>
+        <div>
+          <h3>Temperature</h3>
+          <canvas id="tempChart" width="300" height="200"></canvas></div>
+        <div>
+          <h3>Rainfall</h3>
+          <canvas id="rainChart" width="300" height="200"></canvas></div>
       </div>
     </div>
-
-    
 
 
     <div class="attribution">
@@ -43,7 +56,7 @@
     <!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>-->
     <script type="text/javascript" src="https://www.parsecdn.com/js/parse-1.2.7.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular.min.js"></script>
-    <script src="js/Chart.min.js"></script>
+    <script src="js/Chart.js"></script>
     <script src="js/underscore-min.js"></script>
 
     <!-- App Code -->
