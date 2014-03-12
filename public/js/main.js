@@ -40,12 +40,15 @@ app.controller('main',function($scope, $http) {
       });
   };
 
+
+  // Handle User Input from form
   $scope.selectCity = function (city){
     $scope.alternatives = null;
     $scope.getForecastByLocation('zmw:'+city.zmw);
   };
 
-  //Default Behavior: Get the client IP and Display Default Forecast
+  $scope.numDays=10;
+  //Default Behavior: Get the client IP and Display Default Forecast on load
   $http.jsonp('http://www.telize.com/jsonip?callback=JSON_CALLBACK')
     .success(function(data, status, headers, config) {
       $scope.getForecastByIP(data.ip);
