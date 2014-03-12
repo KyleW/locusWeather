@@ -22,7 +22,7 @@
 
     <div>
     <h2> Weather for {{ location.city }}</h2>
-
+    <h2> Sunny Days: {{ percentSunny | number:0 }}%</h2>
     <div id="forecast">
       <div class="forecastDay" ng-repeat="day in forecast | limitTo: numDays">
         <div class="date">{{day.date.pretty}}</div>
