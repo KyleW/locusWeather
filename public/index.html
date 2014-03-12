@@ -5,14 +5,13 @@
     <link href="css/styles.css" rel="stylesheet">
   </head>
   <body ng-controller="main">
-    <!-- {{ test }} -->
-    <!-- {{ userLocation }} -->
-    <!-- {{ forecast }} -->
 
     <form name="city">
       <input id="citySearch" ng-model="locQuery" name="cityName" label="cityName" type="search" placeholder="Select a city" autofocus><br>
       <input type="submit">
     </form>
+
+    Weather for {{ location.city }}
 
     <div id="forecast">
       <div class="forecastDay" ng-repeat="day in forecast">

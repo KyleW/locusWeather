@@ -2,7 +2,6 @@
 var keys = require('cloud/keys.js');
 
 
-
 Parse.Cloud.define("lookupCoordinates", function(request, response) {
   Parse.Cloud.httpRequest({
     url: 'http://dev.virtualearth.net/REST/v1/Locations/',
@@ -21,9 +20,23 @@ Parse.Cloud.define("lookupCoordinates", function(request, response) {
 });
 
 
-Parse.Cloud.define("getForecast", function(request, response) {
+Parse.Cloud.define("getForecastByIP", function(request, response) {
   Parse.Cloud.httpRequest({
-    url: 'http://api.wunderground.com/api/'+keys.wundergroundKey+'/geolookup/forecast/q/'+request.params.location+'.json',
+    url: 'http://api.wunderground.com/api/'+keys.wundergroundKey+'/geolookup/forecast10day/q/autoip.json?geo_ip='+request.params.clientIP,
+    success: function(httpResponse) {
+      response.success(httpResponse.data);
+    },
+    error: function(httpResponse) {
+      console.error('Request failed with response code ' + httpResponse.status);
+      response.error('Request failed with response code ' + httpResponse.status);
+    }
+  });
+});
+
+
+Parse.Cloud.define("getForecastByLocation", function(request, response) {
+  Parse.Cloud.httpRequest({
+    url: 'http://api.wunderground.com/api/'+keys.wundergroundKey+'/geolookup/forecast10day/q/'+request.params.location+'.json',
     success: function(httpResponse) {
       response.success(httpResponse.data);
     },
