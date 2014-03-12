@@ -59,9 +59,6 @@ app.controller('main',function($scope, $http) {
 
 
 
-
-
-
   $scope.calculatePercentSunny = function(forecast){
     $scope.sunnyDays = 0;
     for (var i = 0 ; i < $scope.numDays ; i++) {
@@ -83,17 +80,15 @@ app.controller('main',function($scope, $http) {
   //CHARTING
   // Docs at: http://www.chartjs.org/docs/
   $scope.updateTempChart =function(forecast){
-    var labels = _.map(forecast,function(day){
-      return day.date.monthname+" "+day.date.day;
-    });
+    var labels=[];
+    var highData=[];
+    var lowData=[];
 
-    var highData = _.map(forecast,function(day){
-      return day.high.fahrenheit;
-    });
-
-    var lowData =_.map(forecast,function(day){
-      return day.low.fahrenheit;
-    });
+    for(var i = 0; i <$scope.numDays; i++){
+      labels.push(forecast[i].date.monthname+" "+forecast[i].date.day);
+      highData.push(forecast[i].high.fahrenheit);
+      lowData.push(forecast[i].low.fahrenheit);
+    }
 
     var data = {
       labels:labels,
@@ -120,15 +115,12 @@ app.controller('main',function($scope, $http) {
   };
 
   $scope.updateRainChart =function(forecast){
-    var labels = _.map(forecast,function(day,i){
-      if(i < $scope.numDays){
-        return day.date.monthname+" "+day.date.day;
-      }
-    });
-
-    var rainData = _.map(forecast,function(day){
-      return day.qpf_allday.in;
-    });
+    var labels=[];
+    var rainData=[];
+    for(var i = 0; i <$scope.numDays; i++){
+      labels.push(forecast[i].date.monthname+" "+forecast[i].date.day);
+      rainData.push(forecast[i].qpf_allday.in);
+    }
 
     var data = {
       labels:labels,
@@ -145,8 +137,6 @@ app.controller('main',function($scope, $http) {
 
     var ctx = document.getElementById("rainChart").getContext("2d");
     var rainChart = new Chart(ctx).Line(data);
-
-
   };
 
   
@@ -161,7 +151,7 @@ app.controller('main',function($scope, $http) {
       $scope.getForecastByIP(data.ip);
     })
     .error(function(data,status,headers, config){
-      console.log(status);
+      // console.log(status);
     });
 
 });

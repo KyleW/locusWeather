@@ -294,7 +294,7 @@ window.Chart = function(context){
 			scaleLineWidth : 1,
 			scaleShowLabels : true,
 			scaleLabel : "<%=value%>",
-			scaleFontFamily : "'Arial'",
+			scaleFontFamily : "'helvetica'",
 			scaleFontSize : 12,
 			scaleFontStyle : "normal",
 			scaleFontColor : "#666",
