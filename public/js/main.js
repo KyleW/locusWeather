@@ -95,9 +95,9 @@ app.controller('main',function($scope, $http) {
       labels:labels,
           datasets : [
           {
-            fillColor : "rgba(220,220,220,0.5)",
-            strokeColor : "rgba(220,220,220,1)",
-            pointColor : "rgba(220,220,220,1)",
+            fillColor : "rgba(181,125,178,0.5)",
+            strokeColor : "rgba(181,125,178,1)",
+            pointColor : "rgba(181,125,178,1)",
             pointStrokeColor : "#fff",
             data : highData
           },
@@ -130,9 +130,9 @@ app.controller('main',function($scope, $http) {
       labels:labels,
           datasets : [
           {
-            fillColor : "rgba(220,220,220,0.5)",
-            strokeColor : "rgba(220,220,220,1)",
-            pointColor : "rgba(220,220,220,1)",
+            fillColor : "rgba(181,125,178,0.5)",
+            strokeColor : "rgba(181,125,178,1)",
+            pointColor : "rgba(181,125,178,1)",
             pointStrokeColor : "#fff",
             data : rainData
           }

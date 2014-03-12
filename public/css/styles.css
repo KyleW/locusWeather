@@ -13,8 +13,14 @@ body {
 #topSection .leftCol {
   flex: 2;
 }
+#topSection .leftCol .logo {
+  vertical-align: middle;
+}
 #topSection .rightCol {
   flex: 5;
+}
+#topSection .rightCol form input {
+  margin: 0 10px 0 5px;
 }
 #topSection .rightCol form .topcoat-search-input--large {
   vertical-align: middle;
@@ -29,6 +35,25 @@ body {
 }
 #bottomSection #forecast {
   flex: 1;
+  margin: 5px;
+  padding: 0 30px 0 10px;
+}
+#bottomSection #forecast .forecastDay {
+  background: #7a9ae5;
+  border: 1px solid #7a9ae5;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  margin: 5px 0;
+  padding: 4px;
+}
+#bottomSection #forecast .forecastDay .date {
+  text-align: right;
+}
+#bottomSection #forecast .forecastDay .dayIcon {
+  display: inline-block;
+  float: left;
+  margin-right: 10px;
 }
 #bottomSection #charts {
   flex: 1;
@@ -37,5 +62,5 @@ body {
   position: absolute;
   right: 0;
   bottom: 0;
-  padding: 20px;
+  padding: 10px;
 }

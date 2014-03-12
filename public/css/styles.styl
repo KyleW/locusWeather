@@ -13,21 +13,18 @@ body
   .leftCol
     flex 2
 
+    .logo
+      vertical-align middle
+
   .rightCol
     flex 5
     form
+      input
+        margin 0 10px 0 5px
       .topcoat-search-input--large
         vertical-align middle
       .topcoat-range
         vertical-align middle
-
-    //   padding: 0 0.563rem;
-    //   font-size: 12px;
-    //   line-height: 1.313rem;
-    //   letter-spacing: 0;
-    //   vertical-align: middle;
-  
-  
 
 
 
@@ -38,6 +35,26 @@ body
 
   #forecast
     flex 1
+    margin 5px
+    padding 0 30px 0 10px
+
+    .forecastDay
+      background #7A9AE5
+      border 1px solid #7A9AE5
+      -webkit-border-radius: 4px;
+      -moz-border-radius: 4px;
+      border-radius: 4px;
+      margin: 5px 0
+      padding:4px
+
+      .date
+        text-align right
+
+      .dayIcon
+        display:inline-block
+        float:left
+        margin-right 10px
+
 
   #charts
     flex 1
@@ -47,4 +64,4 @@ body
   position absolute
   right 0
   bottom 0
-  padding 20px
+  padding 10px
