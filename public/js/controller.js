@@ -1,7 +1,5 @@
 
-var app = angular.module('weather', []);
-
-app.controller('main',function($scope, $http, charts, parseMethods) {
+app.controller('main',function($scope, $http, charts, parse) {
 
   $scope.updateForecast = function(result){
     $scope.forecast = result.forecast.simpleforecast.forecastday;
