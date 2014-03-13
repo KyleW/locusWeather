@@ -32,6 +32,13 @@ app.controller('main',function($scope, $http, charts, parse) {
     parse.getForecastByLocation(location,$scope);
   };
 
+  
+  // Handle User Input from form
+  $scope.selectCity = function (city){
+    $scope.alternatives = null;
+    $scope.getForecastByLocation('zmw:'+city.zmw);
+  };
+
   // ON LOAD
 
   //sets Default numDays
