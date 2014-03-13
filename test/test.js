@@ -1,68 +1,44 @@
-describe('app', function() {
 
-  beforeEach(function(){
-    angular.mock.module('weather');
+describe("App, Controller and Services are Present:", function() {
+
+  var module;
+  before(function() {
+    app = angular.module("weather");
   });
 
-  // describe("Controller", function() {
+  it("should be registered", function() {
+    expect(app).not.to.equal(null);
+  });
 
-  //   it('updateForecast', function() {
-  //     expect(userLocation).to.be.a('string');
-  //   });
-
-  //   it('countSunnyDays', function() {
-  //     expect(userLocation).to.be.a('string');
-  //   });
-
-
-  // });
-
-  // describe("Parse", function() {
-
-  //   it('getForecastByLocation', function() {
-  //     // expect(userLocation).to.be.a('string');
-  //   });
-
-  //   it('getForecastByIP', function() {
-  //     // expect(userLocation).to.be.a('string');
-  //   });
-
-      
-  // });
-
-
-  describe("Charts", function() {
-    beforeEach(
-      angular.mock.inject(function($rootScope, $controller){
-      scope = $rootScope.$new();                //create an empty scope
-      $controller('charts', {$scope: scope});  //declare the controller and inject our empty scope
-    }));
-
-    it('buildCharts', function() {
-      var oldTemp = document.getElementById("tempChart");
-      var oldRain = document.getElementById("rainChart");
-      chart.buildCharts();
-      var newTemp = document.getElementById("tempChart");
-      var newRain = document.getElementById("rainChart");
-      expect(oldTemp).to.not.equal(newTemp);
+  describe("main controller",function(){
+    it('should load', function() {
+      expect(app.main).not.to.equal(null);
     });
+  });
 
-      
+  describe("parse service",function(){
+    it('should load', function() {
+      inject(function($parse) {
+        expect($parse).not.to.equal(null);
+      });
+    });
+    
+    it('should have a working service that gets a forecst by IP',
+      inject(['$parse',function($parse) {
+        
+        var sizes = $yt.resize(w,h,mw,mh);
+        expect(sizes.length).to.equal(2);
+        expect(sizes[0]).to.equal(50);
+        expect(sizes[1]).to.equal(50);
+    }]));
+
+  });
+
+  describe("charts service",function(){
+    it('should load', function() {
+      inject(function($charts) {
+        expect($charts).not.to.equal(null);
+      });
+    });
   });
 });
-
-
-// describe("Lookup IP on load", function() {
-//   // beforeEach(function() {
-//   //   getCurrentLoc();
-//   // });
-//   // // afterEach(function() {
-//   // // });
- 
-
-//   // it('should change userLocation to an array with a latitude and longitude', function() {
-//   //   expect(userLocation).to.be.a('string');
-//   // });
-
-    
-// });

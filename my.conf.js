@@ -17,7 +17,8 @@ module.exports = function(config) {
             'http://ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular.min.js',
             'http://code.angularjs.org/1.2.12/angular-mocks.js',
             'public/js/app.js',
-            'public/js/services/*.js',
+            'public/js/services/charts.js',
+            'public/js/services/parse.js',
             'public/js/controller.js',
             'test/test.js'
     ],

@@ -1,6 +1,5 @@
 app.factory('parse', function () {
   // Methods for getting forecast from Wunderground via Parse Cloudcode
-  
 
   // Initializies Parse and sets keys. Note: these keys are meant to be public
   Parse.initialize('hKFK9auag4BFxC5DETdnFvV4kK4ycL9bzyD4UI7b', '9VsJudzLuZCJxf6cN1GnJ9et8hiePdp2fp9cZlvM');

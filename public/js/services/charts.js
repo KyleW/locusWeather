@@ -63,7 +63,6 @@ app.factory('charts', function () {
       updateRainChart(labels,rainData);
     }
 
-
   };
 
 
