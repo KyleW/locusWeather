@@ -3,24 +3,22 @@ var app = angular.module('weather', []);
 
 app.controller('main',function($scope, $http, charts, parseMethods) {
 
-  //Updating View
   $scope.updateForecast = function(result){
+    $scope.forecast = result.forecast.simpleforecast.forecastday;
+    $scope.numDays = $scope.numDaysQ;
+
+    charts.buildCharts($scope.forecast, $scope.numDays);
+
     if (result.location.country==="US"){
       $scope.location = result.location.city +", "+result.location.state;
     } else {
       $scope.location= result.location.city +", "+result.location.country_name;
     }
-    
-    $scope.numDays = $scope.numDaysQ;
-    $scope.forecast = result.forecast.simpleforecast.forecastday;
-    $scope.calculatePercentSunny($scope.forecast);
-
-    charts.buildCharts($scope.forecast, $scope.numDays);
-
+    $scope.countSunnyDays($scope.forecast);
     $scope.$apply();
   };
 
-  $scope.calculatePercentSunny = function(forecast){
+  $scope.countSunnyDays = function(forecast){
     $scope.sunnyDays = 0;
     for (var i = 0 ; i < $scope.numDays ; i++) {
       if(forecast[i].skyicon === "sunny"){
@@ -30,23 +28,13 @@ app.controller('main',function($scope, $http, charts, parseMethods) {
     $scope.$apply();
   };
 
-  // Handle User Input from form
-  $scope.selectCity = function (city){
-    $scope.alternatives = null;
-    parse.getForecastByLocation('zmw:'+city.zmw, $scope);
-  };
 
-
-  //CHARTING
-  // Docs at: http://www.chartjs.org/docs/
-
-
-
-  // Set Defaults
-  //Sets Default numDays
+  // ON LOAD
+  
+  //sets Default numDays
   $scope.numDaysQ=10;
 
-  //Default Behavior: Get the client IP and Display Default Forecast on load
+  //Get the client IP and display forecast for that location
   $http.jsonp('http://www.telize.com/jsonip?callback=JSON_CALLBACK')
     .success(function(data, status, headers, config) {
       parse.getForecastByIP(data.ip, $scope);
@@ -56,4 +44,3 @@ app.controller('main',function($scope, $http, charts, parseMethods) {
     });
 
 });
-

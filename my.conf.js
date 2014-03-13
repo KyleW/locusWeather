@@ -14,10 +14,10 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: ['https://www.parsecdn.com/js/parse-1.2.7.min.js',
-            "http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js",
             'http://ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular.min.js',
-            'http://code.angularjs.org/1.2.14/angular-mocks.js',
-            'public/js/main.js',
+            'http://code.angularjs.org/1.2.12/angular-mocks.js',
+            'public/js/app.js',
+            'public/js/services/*.js',
             'test/test.js'
     ],
 
@@ -30,7 +30,7 @@ module.exports = function(config) {
 
     // test results reporter to use
     // possible values: 'dots', 'progress', 'junit', 'growl', 'coverage'
-    reporters: ['progress'],
+    reporters: ['dots','progress'],
 
 
     // web server port
