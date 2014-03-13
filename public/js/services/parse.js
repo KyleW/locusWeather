@@ -8,7 +8,6 @@ app.factory('parse', function () {
   return {
 
     getForecastByLocation : function(location,$scope){
-      console.log("ran in parse");
       Parse.Cloud.run('getForecastByLocation', {'location':location}, {
         success: function(result) {
           $scope.locQuery = '';

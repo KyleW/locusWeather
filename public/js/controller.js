@@ -28,11 +28,10 @@ app.controller('main',function($scope, $http, charts, parse) {
 
   //for ng-click to work
   $scope.getForecastByLocation = function(location){
-    console.log("ran in scope");
     parse.getForecastByLocation(location,$scope);
   };
 
-  
+
   // Handle User Input from form
   $scope.selectCity = function (city){
     $scope.alternatives = null;
