@@ -1,41 +1,55 @@
+describe('app', function() {
 
-describe("Controller", function() {
-
-  it('updateForecast', function() {
-    expect(userLocation).to.be.a('string');
+  beforeEach(function(){
+    angular.mock.module('weather');
   });
 
-  it('countSunnyDays', function() {
-    expect(userLocation).to.be.a('string');
+  // describe("Controller", function() {
+
+  //   it('updateForecast', function() {
+  //     expect(userLocation).to.be.a('string');
+  //   });
+
+  //   it('countSunnyDays', function() {
+  //     expect(userLocation).to.be.a('string');
+  //   });
+
+
+  // });
+
+  // describe("Parse", function() {
+
+  //   it('getForecastByLocation', function() {
+  //     // expect(userLocation).to.be.a('string');
+  //   });
+
+  //   it('getForecastByIP', function() {
+  //     // expect(userLocation).to.be.a('string');
+  //   });
+
+      
+  // });
+
+
+  describe("Charts", function() {
+    beforeEach(
+      angular.mock.inject(function($rootScope, $controller){
+      scope = $rootScope.$new();                //create an empty scope
+      $controller('charts', {$scope: scope});  //declare the controller and inject our empty scope
+    }));
+
+    it('buildCharts', function() {
+      var oldTemp = document.getElementById("tempChart");
+      var oldRain = document.getElementById("rainChart");
+      chart.buildCharts();
+      var newTemp = document.getElementById("tempChart");
+      var newRain = document.getElementById("rainChart");
+      expect(oldTemp).to.not.equal(newTemp);
+    });
+
+      
   });
-
-
 });
-
-describe("Parse", function() {
-
-  it('getForecastByLocation', function() {
-    expect(userLocation).to.be.a('string');
-  });
-
-  it('getForecastByIP', function() {
-    expect(userLocation).to.be.a('string');
-  });
-
-    
-});
-
-
-describe("Charts", function() {
-  it('buildCharts', function() {
-    var oldTemp = document.getElementById("tempChart");
-    var oldRain = document.getElementById("rainChart");
-    expect(userLocation).to.be.a('string');
-  });
-
-    
-});
-
 
 
 // describe("Lookup IP on load", function() {
