@@ -26,9 +26,14 @@ app.controller('main',function($scope, $http, charts, parse) {
     $scope.$apply();
   };
 
+  //for ng-click to work
+  $scope.getForecastByLocation = function(location){
+    console.log("ran in scope");
+    parse.getForecastByLocation(location,$scope);
+  };
 
   // ON LOAD
-  
+
   //sets Default numDays
   $scope.numDaysQ=10;
 

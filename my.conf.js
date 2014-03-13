@@ -18,6 +18,7 @@ module.exports = function(config) {
             'http://code.angularjs.org/1.2.12/angular-mocks.js',
             'public/js/app.js',
             'public/js/services/*.js',
+            'public/js/controller.js',
             'test/test.js'
     ],
 
