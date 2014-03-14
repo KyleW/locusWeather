@@ -38,18 +38,23 @@ app.controller('main',function($scope, $http, charts, parse) {
     $scope.getForecastByLocation('zmw:'+city.zmw);
   };
 
+
+
+  $scpope.setDefaults = function (){
+    //sets Default numDays
+    $scope.numDaysQ=10;
+    
+    //Get the client IP and display forecast for that location
+    $http.jsonp('http://www.telize.com/jsonip?callback=JSON_CALLBACK')
+      .success(function(data, status, headers, config) {
+        parse.getForecastByIP(data.ip, $scope);
+      })
+      .error(function(data,status,headers, config){
+        console.log(status);
+      });
+  };
+
   // ON LOAD
-
-  //sets Default numDays
-  $scope.numDaysQ=10;
-
-  //Get the client IP and display forecast for that location
-  $http.jsonp('http://www.telize.com/jsonip?callback=JSON_CALLBACK')
-    .success(function(data, status, headers, config) {
-      parse.getForecastByIP(data.ip, $scope);
-    })
-    .error(function(data,status,headers, config){
-      // console.log(status);
-    });
+  $scope.setDefaults();
 
 });

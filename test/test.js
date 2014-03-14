@@ -6,9 +6,14 @@ describe("App, Controller and Services are Present:", function() {
     app = angular.module("weather");
   });
 
+// APP
+
   it("should be registered", function() {
     expect(app).not.to.equal(null);
   });
+
+
+// CONTROLLER
 
   describe("main controller",function(){
     it('should load', function() {
@@ -16,29 +21,41 @@ describe("App, Controller and Services are Present:", function() {
     });
   });
 
+
+// SERVICES
+
   describe("parse service",function(){
     it('should load', function() {
       inject(function($parse) {
         expect($parse).not.to.equal(null);
       });
     });
-    
-    it('should have a working service that gets a forecst by IP',
-      inject(['$parse',function($parse) {
-        
-        var sizes = $yt.resize(w,h,mw,mh);
-        expect(sizes.length).to.equal(2);
-        expect(sizes[0]).to.equal(50);
-        expect(sizes[1]).to.equal(50);
-    }]));
 
+    it('should have a working service that gets a forecst by IP and location',
+      inject(['$parse',function($parse) {
+        expect($parse.getForecastByIp).not.to.equal(null);
+        expect($parse.getForecastByLocation).not.to.equal(null);
+    }]));
   });
+
 
   describe("charts service",function(){
     it('should load', function() {
-      inject(function($charts) {
+      inject('$charts',function($charts) {
         expect($charts).not.to.equal(null);
       });
     });
+
+    it('should have a working service that builds Charts',
+      inject(['$charts',function($charts) {
+        expect($charts.buildCharts).not.to.equal(null);
+    }]));
+
+    it('should update the charts on the page when build charts is called',
+      inject(['$charts',function($charts) {
+        // expect($charts.buildCharts).not.to.equal(null);
+    }]));
   });
+
+
 });
