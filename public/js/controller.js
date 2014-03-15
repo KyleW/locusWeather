@@ -39,8 +39,7 @@ app.controller('main',function($scope, $http, charts, parse) {
   };
 
 
-
-  $scpope.setDefaults = function (){
+  $scope.setDefaults = function (){
     //sets Default numDays
     $scope.numDaysQ=10;
     

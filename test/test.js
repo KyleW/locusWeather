@@ -57,5 +57,6 @@ describe("App, Controller and Services are Present:", function() {
     }]));
   });
 
+// CLOUDCODE
 
 });
